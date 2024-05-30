@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #F9E3B7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculadora {
+    background-color: #092734;
+    color: #fff;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 360px;
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+    gap: 10px;
+    box-shadow: 10px 20px 30px rgba(0, 0, 0.5, 0.7);
+}
+
+
+#pantalla {
+    grid-column: 1/5;
+    background-color: #628385;
+    border-radius: 15px;
+    padding: 30px;
+    font-size: 1.5em;
+    border: solid 10px #074142 ;
+    text-align: right;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    width: 320px;
+    max-width: 100%;
+    height: 150px;
+    max-height: 100%;
+    overflow-x: auto
+}
+
+.btn {
+    background-color: #0b6f72;
+    border: none;
+    color: #fff;
+    padding: 15px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn:hover {
+    background-color: #095457;
+}
+
+.btn:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
+    background-color: #053e3f;
+}
+
+.op {
+    background-color: #0e507c; 
+}
+.op:hover {
+    background-color: #0c4368;
+}
+.op:active {
+    background-color: #052538;
+}
+
+
+#clear {
+    grid-column: span 2;
+    background-color: #bb7057;
+}
+#clear:hover {
+    background-color: #794838;
+}
+#clear:active {
+    background-color: #4b2c22;
+}
+
+
+#igual {
+    grid-column: span 2;
+    background-color: #60bf7a;
+}
+#igual:hover {
+    background-color: #418152;
+}
+#igual:active {
+    background-color: #24472e;
+}
+
+
+
+#borrar {
+    background-color: #ee3334;
+}
+#borrar:hover {
+    background-color: #a82424;
+}
+#borrar:active {
+    background-color: #581313;
+}
