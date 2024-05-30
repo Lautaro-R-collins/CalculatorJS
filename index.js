@@ -1,13 +1,10 @@
-//manejo del dom
-const pantalla = document.getElementById('pantalla')
-const botones = document.querySelectorAll('.btn')
+const pantalla = document.getElementById('pantalla');
+const botones = document.querySelectorAll('.btn');
 
-//variables de control
-let expresion = []
-let operadorActual = null 
-let operadorIngresado = false; 
+let expresion = [];
+let operadorActual = null;
+let operadorIngresado = false;
 
-//eventos de los botones 
 botones.forEach(boton => {
     boton.addEventListener('click', () => {
         const botonActivo = boton.textContent;
@@ -17,7 +14,7 @@ botones.forEach(boton => {
             pantalla.textContent = '0';
             expresion = [];
             operadorActual = null;
-            operadorIngresado = false; 
+            operadorIngresado = false;
             return;
         }
 
@@ -26,11 +23,11 @@ botones.forEach(boton => {
             if (pantalla.textContent.length === 1 || pantalla.textContent === '0') {
                 pantalla.textContent = '0';
                 expresion = [];
-                operadorIngresado = false; 
+                operadorIngresado = false;
             } else {
                 pantalla.textContent = pantalla.textContent.slice(0, -1);
                 expresion.pop();
-                operadorIngresado = false; 
+                operadorIngresado = false;
             }
             return;
         }
@@ -43,9 +40,8 @@ botones.forEach(boton => {
                 pantalla.textContent += botonActivo;
             }
 
-            operadorIngresado = false; 
+            operadorIngresado = false;
 
-            // Si el operadorActual está definido, estamos agregando al segundo número
             if (operadorActual) {
                 if (!expresion[1]) {
                     expresion[1] = botonActivo;
@@ -59,50 +55,54 @@ botones.forEach(boton => {
                     expresion[0] += botonActivo;
                 }
             }
-
         } else if (
             (botonActivo === '+' ||
             botonActivo === '-' ||
             botonActivo === 'x' ||
             botonActivo === '%') && !operadorIngresado
         ) {
+            // Si ya hay una expresión completa, calcular antes de seguir
+            if (expresion.length === 3) {
+                calcularExpresion();
+            }
+
             operadorActual = botonActivo;
-            pantalla.textContent += botonActivo 
+            pantalla.textContent += ' ' + botonActivo + ' ';
             expresion[2] = operadorActual;
-            operadorIngresado = true; 
+            operadorIngresado = true;
         } else if (botonActivo === '=') {
             calcularExpresion();
             operadorActual = null;
-            operadorIngresado = false; 
+            operadorIngresado = false;
         }
     });
 });
 
-//Función para manejar el cálculo de la expresión
+// Función para manejar el cálculo de la expresión
 function calcularExpresion() {
-    let resultado = parseFloat(expresion[0])
-    let num2 = parseFloat(expresion[1])
+    let resultado = parseFloat(expresion[0]);
+    let num2 = parseFloat(expresion[1]);
 
-    if (isNaN(resultado) || isNaN(num2)) return
+    if (isNaN(resultado) || isNaN(num2)) return;
 
-    resultado = realizarOperacion(resultado, num2, expresion[2])
+    resultado = realizarOperacion(resultado, num2, expresion[2]);
 
-    pantalla.textContent = resultado
-    expresion = [resultado.toString()]
+    pantalla.textContent = resultado;
+    expresion = [resultado.toString()]; // Guardar el resultado como la nueva expresión inicial
 }
 
-//Funcion para realizar las operaciones matematicas
+// Función para realizar operaciones matemáticas
 function realizarOperacion(num1, num2, operador) {
     switch (operador) {
         case '+':
-            return num1 + num2
+            return num1 + num2;
         case '-':
-            return num1 - num2
+            return num1 - num2;
+        case 'X':
+            return num1 * num2;
         case '%':
-            return num1 / num2
-        case 'x':
-            return num1 * num2
+            return num1 / num2;
         default:
-            return num1
+            return num1;
     }
 }
