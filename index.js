@@ -67,7 +67,7 @@ botones.forEach(boton => {
             }
 
             operadorActual = botonActivo;
-            pantalla.textContent += ' ' + botonActivo + ' ';
+            pantalla.textContent += botonActivo;
             expresion[2] = operadorActual;
             operadorIngresado = true;
         } else if (botonActivo === '=') {
@@ -88,7 +88,7 @@ function calcularExpresion() {
     resultado = realizarOperacion(resultado, num2, expresion[2]);
 
     pantalla.textContent = resultado;
-    expresion = [resultado.toString()]; // Guardar el resultado como la nueva expresión inicial
+    expresion = [resultado.toString()]; 
 }
 
 // Función para realizar operaciones matemáticas
@@ -98,7 +98,7 @@ function realizarOperacion(num1, num2, operador) {
             return num1 + num2;
         case '-':
             return num1 - num2;
-        case 'X':
+        case 'x':
             return num1 * num2;
         case '%':
             return num1 / num2;
